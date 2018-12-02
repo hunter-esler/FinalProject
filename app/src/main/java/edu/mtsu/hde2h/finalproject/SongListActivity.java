@@ -29,7 +29,7 @@ public class SongListActivity extends AppCompatActivity {
     ArrayList<String> pathList;
     ListView listView;
     ArrayAdapter<String> adapter;
-    private SongList songList;
+    public static SongList songList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
