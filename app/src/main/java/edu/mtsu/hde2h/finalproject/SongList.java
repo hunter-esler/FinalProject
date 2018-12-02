@@ -51,7 +51,7 @@ public class SongList {
     //looks through history and plays previous song. if no song returns current song
     public Song previousSong() {
         if (songHistory.size() > 0) {
-            currentSong = songHistory.get(songHistory.size()-1);
+            currentSong = songHistory.get(songHistory.size() - 1);
             songHistory.remove(songHistory.size() - 1);
         }
         return songList.get(currentSong);

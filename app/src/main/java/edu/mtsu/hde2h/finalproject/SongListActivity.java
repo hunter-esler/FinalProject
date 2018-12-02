@@ -31,6 +31,8 @@ public class SongListActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     public static SongList songList;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +69,7 @@ public class SongListActivity extends AppCompatActivity {
             int songArtist = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int songDir = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
             int id = songCursor.getColumnIndex(MediaStore.Audio.Media._ID);
+
             do {
                 String currentTitle = songCursor.getString(songTitle);
                 String currentArtist = songCursor.getString(songArtist);
