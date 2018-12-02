@@ -29,6 +29,7 @@ public class SongListActivity extends AppCompatActivity {
     ArrayList<String> pathList;
     ListView listView;
     ArrayAdapter<String> adapter;
+    private SongList songList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +37,7 @@ public class SongListActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_song_list);
 
+        songList = new SongList();
         ActivityCompat.requestPermissions(SongListActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST);
 
         listView = findViewById(R.id.songList);
@@ -48,7 +50,7 @@ public class SongListActivity extends AppCompatActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                System.out.println("i: " + i + " data: " + pathList.get(i));
+
             }
         });
 
@@ -69,8 +71,9 @@ public class SongListActivity extends AppCompatActivity {
                 String currentTitle = songCursor.getString(songTitle);
                 String currentArtist = songCursor.getString(songArtist);
                 String songId = songCursor.getString(id);
-                arrayList.add(currentTitle + "\n" + currentArtist + " testid: " + songId);
+                arrayList.add(currentTitle + "\n" + currentArtist);
                 pathList.add(songCursor.getString(songDir));
+                songList.addSong(songCursor);
             } while (songCursor.moveToNext());
         }
     }
