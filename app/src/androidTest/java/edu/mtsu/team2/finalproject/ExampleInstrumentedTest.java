@@ -1,4 +1,4 @@
-package edu.mtsu.hde2h.finalproject;
+package edu.mtsu.team2.finalproject;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

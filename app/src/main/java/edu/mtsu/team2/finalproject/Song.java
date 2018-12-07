@@ -1,4 +1,4 @@
-package edu.mtsu.hde2h.finalproject;
+package edu.mtsu.team2.finalproject;
 
 import android.content.ContentUris;
 import android.database.Cursor;

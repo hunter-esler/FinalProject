@@ -1,25 +1,20 @@
-package edu.mtsu.hde2h.finalproject;
+package edu.mtsu.team2.finalproject;
 
 import android.Manifest;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.AdapterView.OnItemClickListener;
 
-import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class SongListActivity extends AppCompatActivity {//
 
