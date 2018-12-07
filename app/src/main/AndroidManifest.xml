@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.mtsu.hde2h.finalproject">
+    package="edu.mtsu.team2.finalproject">
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"></uses-permission>
     //permission to continue music when idle
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -14,7 +14,6 @@
         <activity
             android:name=".SongListActivity"
             android:label="Vibe"
-            //android:theme="@style/AppTheme.NoActionBar"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"> //keeps app in potrait mode>
             <intent-filter>
