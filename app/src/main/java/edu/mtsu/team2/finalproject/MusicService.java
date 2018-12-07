@@ -24,6 +24,7 @@ import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class MusicService extends Activity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener, View.OnClickListener{
@@ -74,6 +75,7 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         play.setOnClickListener(this);
 
 
+
     }
 
     //initializing media player
@@ -121,8 +123,12 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     }
 
     public void setShuffle(){
-        if(shuffle) shuffle=false;
-        else shuffle=true;
+        if(shuffle){
+            shuffle=false;
+            Toast.makeText(this,"SHUFFLE OFF", Toast.LENGTH_SHORT);
+        } else {
+            shuffle=true;
+            Toast.makeText(this,"SHUFFLE ON", Toast.LENGTH_SHORT);}
     }
 
     @Override
