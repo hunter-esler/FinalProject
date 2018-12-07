@@ -39,8 +39,12 @@ public class CustomAdapter extends ArrayAdapter<Song> {
         TextView artist = view.findViewById(R.id.textView_artist);
 
         Song song = list.getSongs().get(position);
-        Bitmap bm = BitmapFactory.decodeFile(song.getAlbumPath());
-        imageView.setImageBitmap(bm);
+        try {
+            Bitmap bm = BitmapFactory.decodeFile(song.getAlbumPath());
+            imageView.setImageBitmap(bm);
+        } catch (Exception e) {
+            //do nothing
+        }
         title.setText(song.getTitle());
         artist.setText(song.getArtist());
 
