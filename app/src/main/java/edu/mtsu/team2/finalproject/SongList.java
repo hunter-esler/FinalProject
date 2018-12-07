@@ -22,8 +22,10 @@ public class SongList {
         r = new Random();
     }
 
-    public void addSong(Cursor cursor) {
-        songList.add(new Song(cursor));
+    public Song addSong(Cursor cursor) {
+        Song s = new Song(cursor);
+        songList.add(s);
+        return s;
     }
 
     //sets the next song and returns given song
