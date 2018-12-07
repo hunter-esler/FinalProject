@@ -34,7 +34,7 @@
                                           <PersistentState>
                                             <option name="values">
                                               <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_not_interested_black_24dp.xml" />
+                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/av/ic_pause_circle_outline_black_24dp.xml" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -59,7 +59,7 @@
                                       <entry key="backgroundColor" value="fafbff" />
                                       <entry key="foregroundAssetType" value="CLIP_ART" />
                                       <entry key="foregroundImage" value="A:\Documents\schoool\iconmoosic.png" />
-                                      <entry key="outputName" value="end" />
+                                      <entry key="outputName" value="pause" />
                                     </map>
                                   </option>
                                 </PersistentState>

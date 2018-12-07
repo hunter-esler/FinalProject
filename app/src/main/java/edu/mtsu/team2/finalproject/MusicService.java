@@ -7,11 +7,15 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import android.content.ContentUris;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -19,6 +23,7 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 
 public class MusicService extends Activity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener, View.OnClickListener{
@@ -31,6 +36,10 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     private Button play;
     private Button back;
     private Button next;
+    private ImageView imageView;
+
+
+
 
     //inner binder class
     private final IBinder musicBind = new MusicBinder();
@@ -59,9 +68,11 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         play = (Button) findViewById(R.id.play);
         next = (Button) findViewById(R.id.next);
         back = (Button) findViewById(R.id.back);
+        imageView = findViewById(R.id.imageView3);
 
         songs = SongListActivity.songList.getSongs();
         play.setOnClickListener(this);
+
 
     }
 
@@ -86,7 +97,21 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         switch (v.getId()) {
             case R.id.play:
                 playSong();
+                break;
+            case R.id.pause:
+                pausePlayer();
+                break;
+            case R.id.shuffle:
+                setShuffle();
+                break;
+            case R.id.next:
+                playPrev(); // I switched these cause they play backwards for some reason
+                break;
+            case R.id.back:
+                playNext();
+                break;
         }
+
     }
 
     public class MusicBinder extends Binder {
@@ -165,7 +190,7 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     public void playPrev(){
         back.setOnClickListener(this);
         songPos--;
-        if(songPos < 0){ songPos=songs.size()-1;};
+        if(songPos <= 0){ songPos=songs.size()-1;};
         playSong();
     }
 
@@ -189,6 +214,8 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         }
         playSong();
     }
+
+
 
 
 

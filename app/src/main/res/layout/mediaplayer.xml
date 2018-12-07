@@ -1,35 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <Button
         android:id="@+id/back"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="88dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="423dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="387dp"
+        android:drawableTop="@mipmap/back"
+        android:onClick="onClick"
         android:text="Back" />
+
 
     <Button
         android:id="@+id/play"
-        android:layout_width="167dp"
-        android:layout_height="120dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="86dp"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="-7dp"
-        android:layout_marginTop="277dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="306dp"
         android:layout_toEndOf="@+id/back"
+        android:drawableTop="@mipmap/play"
         android:text="Play" />
 
     <Button
         android:id="@+id/next"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="84dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="263dp"
-        android:layout_marginTop="411dp"
+        android:layout_marginStart="275dp"
+        android:layout_marginTop="391dp"
+        android:drawableTop="@mipmap/next"
+        android:onClick="onClick"
         android:text="Next" />
+
+    <Button
+        android:id="@+id/pause"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="84dp"
+        android:layout_alignStart="@+id/play"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginBottom="71dp"
+        android:drawableTop="@mipmap/pause"
+        android:onClick="onClick"
+        android:text="Button" />
+
+    <Button
+        android:id="@+id/shuffle"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="83dp"
+        android:layout_height="80dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="0dp"
+        android:layout_marginEnd="0dp"
+        android:drawableTop="@mipmap/shuffle"
+        android:onClick="onClick"
+        android:text="Button" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@color/back_background" />
+
 </RelativeLayout>
