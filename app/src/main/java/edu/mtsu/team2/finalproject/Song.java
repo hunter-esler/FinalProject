@@ -16,6 +16,7 @@ public class Song {
     private long duration;
     private int trackNumber;
     private Uri uri;
+    private String albumPath;
 
 
     public Song(Cursor cursor) {
@@ -109,5 +110,13 @@ public class Song {
 
     public void setUri(Uri uri) {
         this.uri = uri;
+    }
+
+    public void setAlbumPath(String path) {
+        albumPath = path;
+    }
+
+    public String getAlbumPath() {
+        return albumPath;
     }
 }

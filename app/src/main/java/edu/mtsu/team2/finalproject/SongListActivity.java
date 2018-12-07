@@ -16,7 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-
+//help from https://www.youtube.com/watch?v=kf2fxYLOiSo
 public class SongListActivity extends AppCompatActivity {//
 
     private static final int MY_PERMISSION_REQUEST = 1;
@@ -42,7 +42,8 @@ public class SongListActivity extends AppCompatActivity {//
         arrayList = new ArrayList<>();
         pathList = new ArrayList<>();
         getMusic();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
+        //adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, arrayList);
+        CustomAdapter adapter = new CustomAdapter(this, R.layout.list_item, songList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -65,14 +66,31 @@ public class SongListActivity extends AppCompatActivity {//
             int songArtist = songCursor.getColumnIndex(MediaStore.Audio.Media.ARTIST);
             int songDir = songCursor.getColumnIndex(MediaStore.Audio.Media.DATA);
             int id = songCursor.getColumnIndex(MediaStore.Audio.Media._ID);
+            int albumIdi = songCursor.getColumnIndex(MediaStore.Audio.Media.ALBUM_ID);
 
             do {
                 String currentTitle = songCursor.getString(songTitle);
                 String currentArtist = songCursor.getString(songArtist);
                 String songId = songCursor.getString(id);
-                arrayList.add(currentTitle + "\n" + currentArtist);
-                pathList.add(songCursor.getString(songDir));
-                songList.addSong(songCursor);
+                int albumId = songCursor.getInt(albumIdi);
+
+
+                //arrayList.add(currentTitle + "\n" + currentArtist);
+                //pathList.add(songCursor.getString(songDir));
+                Song s = songList.addSong(songCursor);
+
+                Cursor acursor = getContentResolver().query(MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
+                        new String[] {MediaStore.Audio.Albums._ID, MediaStore.Audio.Albums.ALBUM_ART},
+                        MediaStore.Audio.Albums._ID+ "=?",
+                        new String[] {String.valueOf(albumId)},
+                        null);
+                if (acursor.moveToFirst()) {
+                    String albumPath = acursor.getString(acursor.getColumnIndex(MediaStore.Audio.Albums.ALBUM_ART));
+                    s.setAlbumPath(albumPath);
+                    System.out.println(albumPath);
+                }
+
+
             } while (songCursor.moveToNext());
         }
     }
