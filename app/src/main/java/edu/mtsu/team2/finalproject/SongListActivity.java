@@ -27,7 +27,7 @@ public class SongListActivity extends AppCompatActivity {//
     ArrayAdapter<String> adapter;
     public static SongList songList;
 
-
+    Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +46,12 @@ public class SongListActivity extends AppCompatActivity {//
         CustomAdapter adapter = new CustomAdapter(this, R.layout.list_item, songList);
         listView.setAdapter(adapter);
 
+        intent = new Intent(SongListActivity.this, MusicService.class);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                startActivity(new Intent(SongListActivity.this, MusicService.class));
+                startActivity(intent);
                 MusicService.setSong(i);
             }
         });

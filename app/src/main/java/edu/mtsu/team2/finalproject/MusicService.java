@@ -152,6 +152,13 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         songPos=songI;
     }
 
+    @Override
+    public void onBackPressed() {
+
+        pausePlayer();
+        finish();
+    }
+
     //When playing song
     public void playSong() {
         //play.setOnClickListener(this);
