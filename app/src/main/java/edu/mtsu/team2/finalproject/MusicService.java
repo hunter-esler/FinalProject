@@ -54,9 +54,14 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         songPos = 0; // starting position at 0
         music = new MediaPlayer(); // creating media player
         setMusicPlayer();
+        setContentView(R.layout.mediaplayer);
+
         play = (Button) findViewById(R.id.play);
         next = (Button) findViewById(R.id.next);
         back = (Button) findViewById(R.id.back);
+
+        songs = SongListActivity.songList.getSongs();
+        play.setOnClickListener(this);
 
     }
 
@@ -78,7 +83,10 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
 
     @Override
     public void onClick(View v) {
-
+        switch (v.getId()) {
+            case R.id.play:
+                playSong();
+        }
     }
 
     public class MusicBinder extends Binder {
@@ -115,7 +123,7 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
 
     //When playing song
     public void playSong() {
-        play.setOnClickListener(this);
+        //play.setOnClickListener(this);
         music.reset();
         Song song = songs.get(songPos); //getting song
         long currSong = song.getId(); //getting id
