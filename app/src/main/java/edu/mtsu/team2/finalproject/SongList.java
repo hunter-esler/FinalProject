@@ -69,5 +69,7 @@ public class SongList {
         this.shuffle = shuffle;
     }
 
-
+    public ArrayList<Song> getSongs() {
+        return songList;
+    }
 }
