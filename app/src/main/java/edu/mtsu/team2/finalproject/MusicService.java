@@ -25,7 +25,7 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     //Media Player, Song List, and Song Position
     private MediaPlayer music;
     private ArrayList<Song> songs;
-    private int songPos;
+    static private int songPos = 0;
     private boolean shuffle=false;
     private Random rand;
     private Button play;
@@ -51,7 +51,7 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        songPos = 0; // starting position at 0
+        //songPos = 0; // starting position at 0
         music = new MediaPlayer(); // creating media player
         setMusicPlayer();
         setContentView(R.layout.mediaplayer);
@@ -117,7 +117,7 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     }
 
     //setting song
-    public void setSong(int songI){
+    static public void setSong(int songI){
         songPos=songI;
     }
 
@@ -127,13 +127,15 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
         music.reset();
         Song song = songs.get(songPos); //getting song
         long currSong = song.getId(); //getting id
-        Uri trackUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, currSong); //set uri
+        Uri trackUri = song.getUri(); //set uri
+
         //setting datasource but checking for error
         try {
             music.setDataSource(getApplicationContext(), trackUri);
+            music.prepareAsync();
         } catch (Exception e) {
             Log.e("MUSIC SERVICE", "Error setting data source", e);
-            music.prepareAsync();
+
         }
     }
         public int getPosn(){

@@ -50,6 +50,7 @@ public class SongListActivity extends AppCompatActivity {//
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 startActivity(new Intent(SongListActivity.this, MusicService.class));
+                MusicService.setSong(i);
             }
         });
 
