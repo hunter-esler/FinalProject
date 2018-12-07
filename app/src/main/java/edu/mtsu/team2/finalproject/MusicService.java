@@ -196,16 +196,13 @@ public class MusicService extends Activity implements MediaPlayer.OnPreparedList
     public void playPrev(){
         back.setOnClickListener(this);
         songPos--;
-        if(songPos <= 0){ songPos=songs.size()-1;};
+        if(songPos < 0){ songPos=songs.size()-1;};
         playSong();
     }
 
     //skip to next
     public void playNext(){
         next.setOnClickListener(this);
-        songPos++;
-        if(songPos >= songs.size()) {songPos=0;};
-        playSong();
 
         if(shuffle){
             int newSong = songPos;
