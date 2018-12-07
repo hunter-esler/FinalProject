@@ -2,6 +2,7 @@ package edu.mtsu.team2.finalproject;
 
 import android.Manifest;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
@@ -47,7 +48,7 @@ public class SongListActivity extends AppCompatActivity {//
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+                startActivity(new Intent(SongListActivity.this, MusicService.class));
             }
         });
 

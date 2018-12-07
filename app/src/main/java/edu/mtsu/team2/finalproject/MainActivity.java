@@ -19,12 +19,13 @@ public class MainActivity extends Activity implements MediaPlayerControl {
     private MusicController controller;
     private boolean paused=false;
     private boolean playbackPaused=false;
+    SongList songs;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_song_list);
         setController();
     }
 
@@ -43,7 +44,7 @@ public class MainActivity extends Activity implements MediaPlayerControl {
         public void onServiceConnected(ComponentName name, IBinder service) {
             MusicService.MusicBinder binder = (MusicService.MusicBinder)service;
             mS = binder.getService();
-            mS.getSongs(songList); //UNKNOWN VARIABLE
+            mS.getSongs(songs.getSongs()); //UNKNOWN VARIABLE
             connectted = true;
         }
 

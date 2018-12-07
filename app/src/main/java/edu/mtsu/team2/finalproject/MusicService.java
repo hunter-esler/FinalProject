@@ -1,5 +1,6 @@
 package edu.mtsu.team2.finalproject;
 
+import android.app.Activity;
 import android.app.Service;
 import android.content.Intent;
 import java.util.ArrayList;
@@ -10,24 +11,31 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Binder;
+import android.os.Bundle;
 import android.os.PowerManager;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.media.MediaPlayer;
 import android.os.IBinder;
+import android.view.View;
+import android.widget.Button;
 
-public class MusicService extends Service implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
+
+public class MusicService extends Activity implements MediaPlayer.OnPreparedListener, MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener, View.OnClickListener{
     //Media Player, Song List, and Song Position
     private MediaPlayer music;
     private ArrayList<Song> songs;
     private int songPos;
     private boolean shuffle=false;
     private Random rand;
+    private Button play;
+    private Button back;
+    private Button next;
 
     //inner binder class
     private final IBinder musicBind = new MusicBinder();
 
-    @Override
+    /*@Override
     public IBinder onBind(Intent intent) {
         return musicBind;
     }
@@ -39,13 +47,17 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         music.release();
         return false;
     }
-
+*/
     @Override
-    public void onCreate() {
-        super.onCreate();
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         songPos = 0; // starting position at 0
         music = new MediaPlayer(); // creating media player
         setMusicPlayer();
+        play = (Button) findViewById(R.id.play);
+        next = (Button) findViewById(R.id.next);
+        back = (Button) findViewById(R.id.back);
+
     }
 
     //initializing media player
@@ -62,6 +74,11 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
     // getting songs from main activity
     public void getSongs(ArrayList<Song> theSongs){
         songs = theSongs;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 
     public class MusicBinder extends Binder {
@@ -98,6 +115,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     //When playing song
     public void playSong() {
+        play.setOnClickListener(this);
         music.reset();
         Song song = songs.get(songPos); //getting song
         long currSong = song.getId(); //getting id
@@ -135,6 +153,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
         }
 
     public void playPrev(){
+        back.setOnClickListener(this);
         songPos--;
         if(songPos < 0){ songPos=songs.size()-1;};
         playSong();
@@ -142,6 +161,7 @@ public class MusicService extends Service implements MediaPlayer.OnPreparedListe
 
     //skip to next
     public void playNext(){
+        next.setOnClickListener(this);
         songPos++;
         if(songPos >= songs.size()) {songPos=0;};
         playSong();
